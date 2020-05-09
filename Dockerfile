@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	fcitx-frontend-gtk3 \
 	fcitx-ui-classic \
 	dbus \
+	dbus-x11 \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
