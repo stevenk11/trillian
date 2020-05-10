@@ -1,6 +1,7 @@
-FROM ubuntu:bionic
+FROM debian:buster-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN sed -i -e "s/deb.debian/ftp.hk.debian/g" /etc/apt/sources.list \
+	&& apt-get update && apt-get install -y --no-install-recommends \
 	wget \
 	ca-certificates \
 	fonts-noto \
@@ -23,8 +24,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	fcitx-sunpinyin \
 	fcitx-frontend-gtk3 \
 	fcitx-ui-classic \
-	dbus \
-	dbus-x11 \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
