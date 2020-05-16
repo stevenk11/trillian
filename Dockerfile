@@ -1,12 +1,8 @@
-FROM debian:buster-slim
+FROM stevenk11/ibus
 
-RUN sed -i -e "s/deb.debian/ftp.hk.debian/g" /etc/apt/sources.list \
-	&& apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 	wget \
 	ca-certificates \
-	fonts-noto \
-	fonts-noto-cjk \
-	fonts-noto-color-emoji \
         libatkmm-1.6-1v5 \
         libcairomm-1.0-1v5 \
         libglibmm-2.4-1v5 \
@@ -19,20 +15,12 @@ RUN sed -i -e "s/deb.debian/ftp.hk.debian/g" /etc/apt/sources.list \
         libxss1 \
         libzip4 \
 	apulse \
-	&& apt-get install -y --no-install-recommends \
-	fcitx \
-	fcitx-sunpinyin \
-	fcitx-frontend-gtk3 \
-	fcitx-ui-classic \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
 	&& wget https://www.trillian.im/get/linux/6.2/trillian_6.2.0.1_amd64.deb \
 	&& dpkg -i trillian_6.2.0.1_amd64.deb \
 	&& apt-get purge -y --autoremove wget
-
-ENV LANG zh_CN.UTF-8
-ENV LC_MESSAGES en_US.UTF-8
 
 COPY entrypoint.sh /usr/bin/starttrillian
 
