@@ -1,2 +1,2 @@
-startibus
-exec trillian
+ibus-daemon -drx
+trillian
