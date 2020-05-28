@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
-	&& wget https://www.trillian.im/get/linux/6.2/trillian_6.2.0.1_amd64.deb \
-	&& dpkg -i trillian_6.2.0.1_amd64.deb \
+	&& wget https://www.trillian.im/get/linux/6.3/trillian_6.3.0.1_amd64.deb \
+	&& dpkg -i trillian_6.3.0.1_amd64.deb \
 	&& apt-get purge -y --autoremove wget
 
 COPY entrypoint.sh /usr/bin/starttrillian
